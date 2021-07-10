@@ -31,7 +31,7 @@
 - name: Create App Container
   docker_container:
     name: java_app
-    image: java_app_project
+    image: alnp/java_app_project
     state: present
     expose:
     - 8080
