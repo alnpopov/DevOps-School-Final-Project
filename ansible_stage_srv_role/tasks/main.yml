@@ -29,7 +29,7 @@
     source: pull
 
 - name: Create App Container
-  docker:
+  docker_container:
     name: java_app
     image: java_app_project
     state: present
