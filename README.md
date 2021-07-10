@@ -6,7 +6,7 @@
 Для запуска проекта требутся:
 - установленный Jenkins с плагинами Git, Pipeline
 - учетная запись AWS IAM с правами для создания EC2 инстансов
-- на сборочной ноде Jenkins также должны быть установлены Terraform и Ansible
+- на сборочной ноде Jenkins должны быть установлены Terraform и Ansible
 - учетная запись на DockerHub
 
 1. Создать Jenkins Job тип Pipeline
