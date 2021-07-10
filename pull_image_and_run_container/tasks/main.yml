@@ -6,8 +6,6 @@
   apt: name={{ item }} state=latest update_cache=yes
   loop: 
     - docker.io
-    - apt-transport-https
-    - ca-certificates
     - python3-pip
     - python3-setuptools
 
@@ -25,6 +23,7 @@
 - name: Pull an Image
   docker_image:
    name: alnp/java-app-project
+   tag: latest
    source: pull
 
 - name: Start App Container
