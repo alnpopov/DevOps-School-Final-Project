@@ -1,0 +1,12 @@
+---
+- name: App deploy to stage usin docker
+  hosts: build_servers
+  gather_facts: no
+  remote_user: ubuntu
+  vars:
+    ansible_ssh_private_key_file: aws_key.pem
+  
+  become: yes
+
+  roles:
+    - ansible_stage_srv_role
