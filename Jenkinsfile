@@ -21,12 +21,12 @@ pipeline {
         }
         stage('Ansible: Create Docker Image and Push it to DockerHub') {
             steps {
-                sh 'ansible-playbook -i hosts ansible_build_srv_role.yml --vault-password-file docker.pass'
+                sh 'ansible-playbook -i hosts create_and_push_image.yml --vault-password-file docker.pass'
             }
         }
         stage('Ansible: Pull Docker Image and Deploy it to Stage') {
             steps {
-                sh 'ansible-playbook -i hosts ansible_stage_srv_role.yml --vault-password-file docker.pass'
+                sh 'ansible-playbook -i hosts pull_image_and_run_container.yml --vault-password-file docker.pass'
             }
         }
     }
