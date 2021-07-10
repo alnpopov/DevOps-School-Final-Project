@@ -2,9 +2,13 @@ pipeline {
     agent any
 
     stages {
-        stage('Terraform: Init, Validate and Plan') {
+        stage('Terraform: Init') {
             steps {
                 sh "terraform init -input=false"
+            }
+        }
+        stage('Terraform: Validate and Plan') {
+            steps {
                 sh "terraform validate"
                 sh "terraform plan"
             }
