@@ -11,15 +11,14 @@
     search_regex: OpenSSH
 #  delegate_to: localhost
 
-- name: Ensure Docker package is present
-  apt:
-    name: docker.io
-    update_cache: yes
-    state: present
-
-- name: Install required system packages
+- name: Install required packages
   apt: name={{ item }} state=latest update_cache=yes
-  loop: [ 'apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common', 'python3-pip', 'virtualenv', 'python3-setuptools']
+  loop: 
+    - docker.io
+    - apt-transport-https
+    - ca-certificates
+    - python3-pip
+    - python3-setuptools
 
 - name: Install Docker Module for Python
   pip:
