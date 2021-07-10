@@ -25,7 +25,6 @@
 - name: Pull an Image
   docker_image:
     name: alnp/java-app-project
-    tag: latest
     source: pull
 
 - name: Start App Container
