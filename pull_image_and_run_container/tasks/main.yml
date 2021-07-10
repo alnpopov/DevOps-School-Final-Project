@@ -32,5 +32,5 @@
   docker_container:
     name: java_app
     image: alnp/java_app_project
-    ports:
+    published_ports:
       - "8080:8080"
