@@ -24,12 +24,12 @@
 
 - name: Pull an Image
   docker_image:
-    name: alnp/java-app-project
-    source: pull
+   name: alnp/java-app-project
+   source: pull
 
 - name: Start App Container
   docker_container:
-    name: java_app
-    image: alnp/java_app_project
+    name: java-app
+    image: alnp/java-app-project
     published_ports:
       - "8080:8080"
