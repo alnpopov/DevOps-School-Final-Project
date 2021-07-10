@@ -7,6 +7,6 @@ variable "key-name" {
   description = "EC2 acces key pair"
 }
 variable "security-group" {
-  default = "Java-App-Project-SecGr"
+  default = "Java-App-Project-SG"
   description = "Security group for AWS Instances"
 }
