@@ -15,9 +15,14 @@ pipeline {
                 sh 'terraform output > output'
             }
         }
+        stage('Ansible: Create Docker Image and Push to DockerHub') {
+            steps {
+                sh 'ansible-playbook -i hosts ansible_build_srv_role.yml --vault-password-file docker.pass'
+            }
+        }
         stage('Ansible: Pull Docker Image and Deploy to Stage') {
             steps {
-                sh 'ansible-playbook'
+                sh 'ansible-playbook '
             }
         }
     }
