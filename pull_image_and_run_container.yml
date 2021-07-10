@@ -9,4 +9,4 @@
   become: yes
 
   roles:
-    - ansible_stage_srv_role
+    - pull_image_and_run_container

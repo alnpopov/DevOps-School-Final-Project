@@ -9,4 +9,4 @@
   become: yes
 
   roles:
-    - ansible_build_srv_role
+    - create_and_push_image
