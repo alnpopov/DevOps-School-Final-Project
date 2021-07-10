@@ -49,6 +49,20 @@ resource "aws_security_group" "allow_tcp_22_and_8080" {    # Create Security Gro
   }
 }
 
+resource "aws_instance" "stage_srv" {
+  count = 1
+  depends_on = [aws_key_pair.kp, aws_security_group.allow_tcp_22_and_8080]
+  ami = "ami-05f7491af5eef733a"
+  instance_type = "t3a.micro"
+  key_name = "${var.key-name}"
+  security_groups = [
+    "${var.security-group}"
+  ]
+  tags = {
+    Name = "Stage"
+  }
+}
+
 resource "aws_instance" "build_srv" {
   count = 1
   depends_on = [aws_key_pair.kp, aws_security_group.allow_tcp_22_and_8080]
