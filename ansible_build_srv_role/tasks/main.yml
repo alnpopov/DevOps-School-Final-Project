@@ -1,0 +1,65 @@
+---
+# tasks file to cofigure build_server_docker
+- pause:
+    minutes: 1
+
+- name: wait for the server to start
+  wait_for:
+    host: "{{ inventory_hostname }}"
+    port: 22
+    delay: 30
+    search_regex: OpenSSH
+#  delegate_to: localhost
+
+- name: Ensure Docker package is present
+  apt:
+    name: docker.io
+    update_cache: yes
+    state: present
+
+- name: Install required system packages
+  apt: name={{ item }} state=latest update_cache=yes
+  loop: [ 'apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common', 'python3-pip', 'virtualenv', 'python3-setuptools']
+
+- name: Install Docker Module for Python
+  pip:
+    name: docker
+
+- name: create build directory
+  file:
+    path: /tmp
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: copy Dockerfile
+  copy:
+    src: ./Dockerfile
+    dest: /tmp/Dockerfile
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: build docker container image
+  docker_image:
+    name: devops_project_image
+    build:
+      path: /tmp/
+    source: build
+    state: present
+
+- name: Log into DockerHub
+  docker_login:
+    username: "{{ docker_login }}"
+    password: "{{ docker_password }}"
+    email: al.n.popov@gmail.com
+    reauthorize: yes
+
+- name: Tag and push to DockerHub
+  docker_image:
+    name: devops_project_image
+    repository: alnp/java-app-project
+    tag: latest
+    push: yes
+

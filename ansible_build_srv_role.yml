@@ -1,0 +1,12 @@
+---
+- name: App compile using Docker
+  hosts: build_servers
+  gather_facts: no
+  remote_user: ubuntu
+  vars:
+    ansible_ssh_private_key_file: aws_key.pem
+  
+  become: yes
+
+  roles:
+    - ansible_build_srv_role
