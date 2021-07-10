@@ -28,11 +28,9 @@
     tag: latest
     source: pull
 
-- name: Create App Container
+- name: Start App Container
   docker_container:
     name: java_app
     image: alnp/java_app_project
-    state: present
-    expose:
-    - 8080
-
+    ports:
+      - "8080:8080"
