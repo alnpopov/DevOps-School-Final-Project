@@ -15,5 +15,10 @@ pipeline {
                 sh 'terraform output > output'
             }
         }
+        stage('Ansible: Pull Docker Image and Deploy to Stage') {
+            steps {
+                sh 'ansible-playbook'
+            }
+        }
     }
 }
