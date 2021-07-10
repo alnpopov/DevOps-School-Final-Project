@@ -1,6 +1,6 @@
 ---
-- name: App deploy to stage usin docker
-  hosts: build_servers
+- name: App deploy to stage using docker
+  hosts: stage_servers
   gather_facts: no
   remote_user: ubuntu
   vars:
